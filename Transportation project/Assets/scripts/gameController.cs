@@ -8,12 +8,13 @@ public class gameController : MonoBehaviour {
     public GameObject cubePrefab;
     GameObject currentCube;
 
-    //Used for tracking which cube user has clicked if any
+    //Used for tracking which cube user has clicked if any, and whether the airplane is active
     public static GameObject redCube;
     public static bool redCubeExists = false;
+    public static bool airplaneIsActive = true;
 
     // Use this for initialization
-    void MakeCube(int xPos,int yPos)
+    GameObject MakeCube(int xPos,int yPos)
     {
         cubePosition = new Vector3(xPos, yPos, 0);
 
@@ -21,15 +22,23 @@ public class gameController : MonoBehaviour {
         currentCube = Instantiate(cubePrefab, cubePosition, Quaternion.identity);
         currentCube.GetComponent<Renderer>().material.color = Color.white;
         currentCube.AddComponent<cubeScript>();
+        return currentCube;
     }
     
     void Start () {
         for (int i=-8; i<8; i++)
         {
-            MakeCube(i, 0);
-            //This is somewhat inefficient, but also much easier to work with.
-            //I could just have the last cube be called the red cube to avoid null references,
-            //but I know we're going to rewrite this later and this way makes rewriting easier.
+            for (int j = 4; j > -5; j--){
+                currentCube = MakeCube(i, j);
+                if (!redCubeExists)
+                {
+                    currentCube.GetComponent<Renderer>().material.color = Color.red;
+                    redCubeExists = true;
+                    redCube = currentCube;
+                }
+            }
+            
+            
         }
         
     }

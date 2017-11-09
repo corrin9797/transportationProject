@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 1479986861}
   - component: {fileID: 1479986862}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: gameControllerObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,3 +304,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 1895228192058594, guid: b375995c1ef09554f97a24f3835b2d7e, type: 2}
+  turnTime: 1.5
+  airplaneCargo: 0
